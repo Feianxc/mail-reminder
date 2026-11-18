@@ -1,0 +1,9 @@
+build/
+build-simulator/
+output/
+MailReminder.xcodeproj/
+Info.plist
+*.ipa
+*.p12
+*.mobileprovision
+*.p8

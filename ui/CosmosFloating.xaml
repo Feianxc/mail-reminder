@@ -1,0 +1,94 @@
+<Grid xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      Width="96" Height="96" Background="Transparent" UseLayoutRounding="True">
+  <Grid.Resources>
+    <Style x:Key="BallStyle" TargetType="Button">
+      <Setter Property="FocusVisualStyle" Value="{x:Null}"/>
+      <Setter Property="Cursor" Value="Hand"/>
+      <Setter Property="Template">
+        <Setter.Value>
+          <ControlTemplate TargetType="Button">
+            <Grid Background="Transparent">
+              <!-- 日冕 -->
+              <Ellipse Margin="-9" IsHitTestVisible="False">
+                <Ellipse.Fill>
+                  <RadialGradientBrush>
+                    <GradientStop Color="#00FFE2B8" Offset="0.72"/>
+                    <GradientStop Color="#E6FFE8C8" Offset="0.8"/>
+                    <GradientStop Color="#59FFB27A" Offset="0.87"/>
+                    <GradientStop Color="#00A48BFF" Offset="1"/>
+                  </RadialGradientBrush>
+                </Ellipse.Fill>
+              </Ellipse>
+              <Ellipse x:Name="Hover" Margin="-9" Opacity="0" IsHitTestVisible="False">
+                <Ellipse.Fill>
+                  <RadialGradientBrush>
+                    <GradientStop Color="#00FFF6E4" Offset="0.7"/>
+                    <GradientStop Color="#FFFFF6E4" Offset="0.8"/>
+                    <GradientStop Color="#80FFC08A" Offset="0.9"/>
+                    <GradientStop Color="#00B7A1FF" Offset="1"/>
+                  </RadialGradientBrush>
+                </Ellipse.Fill>
+              </Ellipse>
+              <!-- 暗面 -->
+              <Ellipse StrokeThickness="1.2">
+                <Ellipse.Fill>
+                  <RadialGradientBrush GradientOrigin="0.5,0.35" Center="0.5,0.5" RadiusX="0.6" RadiusY="0.6">
+                    <GradientStop Color="#FF17173F" Offset="0"/>
+                    <GradientStop Color="#FF0A0A1F" Offset="0.6"/>
+                    <GradientStop Color="#FF04040C" Offset="1"/>
+                  </RadialGradientBrush>
+                </Ellipse.Fill>
+                <Ellipse.Stroke>
+                  <LinearGradientBrush StartPoint="0.85,0.1" EndPoint="0.15,0.9">
+                    <GradientStop Color="#FFFFF4DC" Offset="0"/>
+                    <GradientStop Color="#99FFC896" Offset="0.35"/>
+                    <GradientStop Color="#40B4A0FF" Offset="1"/>
+                  </LinearGradientBrush>
+                </Ellipse.Stroke>
+              </Ellipse>
+              <!-- 钻石环 -->
+              <Ellipse Width="14" Height="14" HorizontalAlignment="Right" VerticalAlignment="Top" Margin="0,4,4,0" IsHitTestVisible="False">
+                <Ellipse.Fill>
+                  <RadialGradientBrush>
+                    <GradientStop Color="#FFFFFFFF" Offset="0"/>
+                    <GradientStop Color="#80FFE6C0" Offset="0.3"/>
+                    <GradientStop Color="#00FFE6C0" Offset="1"/>
+                  </RadialGradientBrush>
+                </Ellipse.Fill>
+              </Ellipse>
+              <Ellipse x:Name="Focus" Margin="-4" Stroke="{DynamicResource AccentBrush}" StrokeThickness="1.5" Opacity="0" IsHitTestVisible="False"/>
+              <ContentPresenter/>
+            </Grid>
+            <ControlTemplate.Triggers>
+              <Trigger Property="IsMouseOver" Value="True"><Setter TargetName="Hover" Property="Opacity" Value="1"/></Trigger>
+              <Trigger Property="IsKeyboardFocused" Value="True"><Setter TargetName="Focus" Property="Opacity" Value="1"/></Trigger>
+            </ControlTemplate.Triggers>
+          </ControlTemplate>
+        </Setter.Value>
+      </Setter>
+    </Style>
+  </Grid.Resources>
+  <Ellipse x:Name="SignalPulse" Width="72" Height="72" Stroke="{DynamicResource SignalBrush}" StrokeThickness="2" Opacity="0" IsHitTestVisible="False" RenderTransformOrigin="0.5,0.5">
+    <Ellipse.RenderTransform><ScaleTransform ScaleX="1" ScaleY="1"/></Ellipse.RenderTransform>
+  </Ellipse>
+  <!-- 绕行的小卫星 -->
+  <Grid x:Name="AmbientOrbit" Width="92" Height="92" IsHitTestVisible="False" RenderTransformOrigin="0.5,0.5">
+    <Grid.RenderTransform><RotateTransform Angle="0"/></Grid.RenderTransform>
+    <Ellipse Width="5" Height="5" Fill="#FFFFF4DC" HorizontalAlignment="Center" VerticalAlignment="Top"/>
+  </Grid>
+  <Button x:Name="BallSurface" Width="72" Height="72" Style="{StaticResource BallStyle}" RenderTransformOrigin="0.5,0.5"
+          AutomationProperties.Name="邮件提醒助手悬浮球">
+    <Canvas Width="72" Height="72" IsHitTestVisible="False">
+      <Path Fill="#B3FFFFFF" Data="M20,24 a1,1 0 1 0 2,0 a1,1 0 1 0 -2,0 M50,20 a0.8,0.8 0 1 0 1.6,0 a0.8,0.8 0 1 0 -1.6,0 M52,48 a1,1 0 1 0 2,0 a1,1 0 1 0 -2,0 M22,50 a0.7,0.7 0 1 0 1.4,0 a0.7,0.7 0 1 0 -1.4,0"/>
+      <Path Fill="{DynamicResource ActionBrush}" Data="M36,25 L38,34 47,36 38,38 36,47 34,38 25,36 34,34 Z"/>
+    </Canvas>
+  </Button>
+  <!-- 冷却：环形倒计时 + 秒数 -->
+  <Ellipse x:Name="CooldownGauge" Width="80" Height="80" Stroke="{DynamicResource SignalBrush}" StrokeThickness="2.5"
+           StrokeDashArray="97.39 200" Opacity="0" IsHitTestVisible="False" RenderTransformOrigin="0.5,0.5">
+    <Ellipse.RenderTransform><RotateTransform Angle="-90"/></Ellipse.RenderTransform>
+  </Ellipse>
+  <Border Width="70" Height="70" CornerRadius="35" Background="#D905050F" IsHitTestVisible="False" Visibility="{Binding Visibility, ElementName=ActionTitle}"/>
+  <TextBlock x:Name="ActionTitle" Visibility="Collapsed" IsHitTestVisible="False" MaxWidth="56" HorizontalAlignment="Center" VerticalAlignment="Center" TextAlignment="Center" TextTrimming="CharacterEllipsis" FontFamily="{DynamicResource NumFont}" FontSize="22" Foreground="{DynamicResource TextBrush}"/>
+</Grid>

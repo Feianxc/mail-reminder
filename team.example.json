@@ -1,0 +1,7 @@
+{
+  "RoomName": "办公室",
+  "BroadcastAddress": "192.168.20.255",
+  "Port": 45820,
+  "RoomKey": "REPLACE_WITH_BASE64_32_BYTE_TEAM_KEY",
+  "RelayUrl": "https://relay.example.com/mail-reminder/"
+}

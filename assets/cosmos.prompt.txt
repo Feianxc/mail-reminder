@@ -1,0 +1,8 @@
+星空背景资产
+
+使用内置 imagegen 生成。项目文件为 assets/cosmos.png，生成图已嵌入便携程序。
+资产用于宇宙星空主题的主窗口、独立通知和设置页。
+
+生成提示词原文
+
+Create a production background image asset for an elegant native desktop utility called Office Signal, a cosmic starfield theme. This is ONLY an artwork background, NO UI, NO words, NO typography, NO lettering, NO logo, NO frames. 1536 x 1536 square composition. Premium astrophotographic cinematic deep space, near black midnight navy throughout most of the central and lower canvas, a sparse field of beautifully tiny sharp stars. A sweeping soft indigo and muted violet nebula dust cloud arcs across the upper right and toward the far right edge, luminous but restrained, with a small exquisitely realistic rim-lit dark blue planet at x=77% y=30%, diameter 21% of canvas. Faint teal starlight in a few areas, very subtle distant star clusters. Keep the center x=25%-65% y=30%-78% and bottom 25% calm and very dark for readable interactive text layered on top. Photographic physical materials, atmospheric depth, tasteful negative space, no generic purple neon gradients, no lens flare, no orange fire, no busy stars, no bright central object. Art direction feels like a sophisticated planetarium at night. Fully opaque image.

@@ -1,0 +1,74 @@
+<Grid xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      Width="440" Height="232" Tag="side" Background="Transparent" UseLayoutRounding="True" SnapsToDevicePixels="True"
+      TextOptions.TextFormattingMode="Display"
+      TextElement.FontFamily="Microsoft YaHei UI, Segoe UI" TextElement.Foreground="{DynamicResource TextBrush}">
+  <!-- Tag="side"：由屏幕右侧滑入。卡片四周留白用于投影 -->
+  <Border Margin="16,12,16,20" CornerRadius="14" Background="{DynamicResource MenuBrush}">
+    <Border.Effect><DropShadowEffect Color="#FF000000" BlurRadius="18" ShadowDepth="5" Direction="270" Opacity="0.5"/></Border.Effect>
+  </Border>
+  <Border Margin="16,12,16,20" CornerRadius="14" BorderBrush="{DynamicResource LineBrush}" BorderThickness="1" IsHitTestVisible="False">
+    <Border.Background>
+      <RadialGradientBrush Center="0.08,0" GradientOrigin="0.08,0" RadiusX="0.7" RadiusY="1.1">
+        <GradientStop Color="#30FF8A3D" Offset="0"/>
+        <GradientStop Color="#00FF8A3D" Offset="1"/>
+      </RadialGradientBrush>
+    </Border.Background>
+  </Border>
+  <!-- 顶部信号灯带，持续呼吸直到确认 -->
+  <Border x:Name="AmbientDot" Height="2" Margin="44,13,44,0" VerticalAlignment="Top" CornerRadius="1" IsHitTestVisible="False">
+    <Border.Background>
+      <LinearGradientBrush StartPoint="0,0" EndPoint="1,0">
+        <GradientStop Color="#00FF8A3D" Offset="0"/>
+        <GradientStop Color="#FFFFB45A" Offset="0.5"/>
+        <GradientStop Color="#00FF8A3D" Offset="1"/>
+      </LinearGradientBrush>
+    </Border.Background>
+  </Border>
+  <Grid Margin="36,30,36,38" RenderOptions.ClearTypeHint="Enabled">
+    <Grid.RowDefinitions>
+      <RowDefinition Height="*"/>
+      <RowDefinition Height="40"/>
+    </Grid.RowDefinitions>
+    <Grid.ColumnDefinitions>
+      <ColumnDefinition Width="70"/>
+      <ColumnDefinition Width="*"/>
+    </Grid.ColumnDefinitions>
+    <!-- 徽标：与悬浮球同一图形 -->
+    <Grid Width="56" Height="56" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="0,4,0,0">
+      <Ellipse x:Name="AmbientGlow" Margin="-8" IsHitTestVisible="False">
+        <Ellipse.Fill>
+          <RadialGradientBrush>
+            <GradientStop Color="#66FF8A3D" Offset="0.2"/>
+            <GradientStop Color="#00FF8A3D" Offset="1"/>
+          </RadialGradientBrush>
+        </Ellipse.Fill>
+      </Ellipse>
+      <Ellipse x:Name="SignalPulse" Margin="6" Stroke="{DynamicResource SignalBrush}" StrokeThickness="2" Opacity="0" IsHitTestVisible="False" RenderTransformOrigin="0.5,0.5">
+        <Ellipse.RenderTransform><ScaleTransform/></Ellipse.RenderTransform>
+      </Ellipse>
+      <Ellipse x:Name="AmbientOrbit" Stroke="{DynamicResource AccentBrush}" StrokeThickness="1.5" StrokeDashArray="18 39.07" StrokeDashCap="Round" RenderTransformOrigin="0.5,0.5" IsHitTestVisible="False">
+        <Ellipse.RenderTransform><RotateTransform Angle="0"/></Ellipse.RenderTransform>
+      </Ellipse>
+      <Ellipse Margin="6" Fill="{DynamicResource BackgroundBrush}" Stroke="{DynamicResource LineBrush}" StrokeThickness="1"/>
+      <Ellipse Width="10" Height="10" Fill="{DynamicResource ActionBrush}"/>
+      <Path Stroke="{DynamicResource AccentBrush}" StrokeThickness="1.6" StrokeStartLineCap="Round" StrokeEndLineCap="Round" Data="M21,21 A10,10 0 0 0 21,35 M35,21 A10,10 0 0 1 35,35"/>
+    </Grid>
+    <StackPanel Grid.Column="1" VerticalAlignment="Top">
+      <DockPanel LastChildFill="True">
+        <TextBlock x:Name="AlertTime" DockPanel.Dock="Right" Text="--:--" FontFamily="{DynamicResource NumFont}" FontSize="12.5" Foreground="{DynamicResource MutedBrush}" VerticalAlignment="Center" Margin="10,0,0,0"/>
+        <Border HorizontalAlignment="Left" CornerRadius="5" Background="#29FF8A3D" Padding="7,2">
+          <TextBlock x:Name="AlertKind" Text="邮件提醒助手" FontSize="11.5" Foreground="{DynamicResource SignalBrush}" TextTrimming="CharacterEllipsis"/>
+        </Border>
+      </DockPanel>
+      <TextBlock x:Name="AlertTitle" Text="收到一封加急邮件，请立刻处理" FontSize="26" FontWeight="Bold" TextOptions.TextFormattingMode="Ideal" Margin="0,8,0,0" TextTrimming="CharacterEllipsis"/>
+      <TextBlock x:Name="AlertDetails" FontSize="12.5" LineHeight="20" MaxHeight="40" Margin="0,6,0,0" Foreground="{DynamicResource MutedBrush}" TextWrapping="Wrap" TextTrimming="CharacterEllipsis"/>
+    </StackPanel>
+    <Button x:Name="SeenButton" Grid.Row="1" Grid.ColumnSpan="2" Style="{DynamicResource AccentButton}" Background="{DynamicResource ActionBrush}" Foreground="#FF1A0E05" Padding="0" IsDefault="True" ToolTip="确认后发送方会看到“已知晓”">
+      <StackPanel Orientation="Horizontal">
+        <Path Data="M1,6 L5,10 L13,1" Stroke="#FF1A0E05" StrokeThickness="2" StrokeStartLineCap="Round" StrokeEndLineCap="Round" StrokeLineJoin="Round" VerticalAlignment="Center" Margin="0,0,8,0"/>
+        <TextBlock Text="知道了" FontSize="14" FontWeight="SemiBold" VerticalAlignment="Center"/>
+      </StackPanel>
+    </Button>
+  </Grid>
+</Grid>

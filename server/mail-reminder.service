@@ -1,0 +1,30 @@
+[Unit]
+Description=FEIAN Mail Reminder Relay
+After=network-online.target
+Wants=network-online.target
+
+[Service]
+Type=simple
+User=mail-reminder
+Group=mail-reminder
+WorkingDirectory=/srv/apps/mail-reminder/current
+Environment=HOST=127.0.0.1
+Environment=PORT=45822
+Environment=BASE_PATH=/mail-reminder
+Environment=PUBLIC_URL=https://blog.feian.online/mail-reminder/
+Environment=MAIL_DATA_DIR=/var/lib/mail-reminder
+Environment=RELEASES_DIR=/srv/apps/mail-reminder/downloads
+ExecStart=/usr/local/bin/node /srv/apps/mail-reminder/current/server.mjs
+Restart=on-failure
+RestartSec=3
+UMask=0077
+NoNewPrivileges=true
+PrivateTmp=true
+ProtectSystem=strict
+ProtectHome=true
+ReadWritePaths=/var/lib/mail-reminder
+MemoryMax=192M
+TasksMax=64
+
+[Install]
+WantedBy=multi-user.target
